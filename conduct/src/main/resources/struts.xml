@@ -36,6 +36,10 @@
         	<result name="success">userList.jsp</result>
         	<result name="fail">fail.jsp</result>
         </action>
+        <action name="login" class="com.q.controller.UserAction" method="userLogin">
+        	<result name="success">userList.jsp</result>
+        	<result name="fail">fail.jsp</result>
+        </action>
     </package>
     <!-- 页面协参跳转 -->
     <package name="pagePackage" extends="struts-default" namespace="/">

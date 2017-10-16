@@ -64,5 +64,20 @@ public class UserService {
 		total++;
 		return total;
 	}
+
+	public int login(String name, String password) {
+		TbUser user = userDao.login(name);
+		int i = 0;
+		if(user == null){
+			i = 0;
+			return i;
+		}else if(user.getPassword().equals(password)){
+			i = 1;
+			return i;
+		}else{
+			i = 2;
+			return i;
+		}
+	}
 	
 }

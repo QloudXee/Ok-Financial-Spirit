@@ -42,7 +42,7 @@ private SessionFactory sessionFactory;
 	 * */
 	public List<TbUser> getAll(int page) {
 		Session session = getSession(); 
-		String hql = "FROM TbUser WHERE statues = 1 OR statues = 2";
+		String hql = "FROM TbUser u WHERE u.statues = 1 OR u.statues = 2";
 		Query query = session.createQuery(hql);
 		query.setFirstResult(page*10-10);
 		query.setMaxResults(page*9);
@@ -51,7 +51,7 @@ private SessionFactory sessionFactory;
 	}
 	
 	/**
-	 * 获取总页数
+	 * 获取全部用户信息
 	 * @author Qloud
 	 * @return List<TbUser>
 	 * */
@@ -69,10 +69,9 @@ private SessionFactory sessionFactory;
 	 * */
 	public List<TbUser> queryUserByName(String name) {
 		Session session = getSession(); 
-		String hql = "FROM TbUser WHERE (statues = 1 OR statues = 2) AND name = ?";
-		List<TbUser> users = session.createQuery(hql)
-													.setParameter(0, name)
-													.list();
+		String hql = "FROM TbUser u WHERE (u.statues = 1 OR u.statues = 2) AND u.name = ?";
+		List<TbUser> users = session.createQuery(hql).setParameter(0, name)
+													 .list();
 		return users;
 	}
 
@@ -86,13 +85,14 @@ private SessionFactory sessionFactory;
 	//修改用户
 	public void alertUser(TbUser user) {
 		Session session = getSession(); 
-		/*String hql = "UPDATE TbUser u SET u.password = ? AND u.email = ? AND u.sex = ? WHERE u.id = ?";
-		Query query = session.createQuery(hql);
-		query.setParameter(0, user.getPassword());
-		query.setParameter(1, user.getEmail());
-		query.setParameter(2, user.getSex());
-		query.setParameter(3, user.getId());*/
 		session.update(user);
+	}
+
+	public TbUser login(String name) {
+		Session session = getSession();
+		String hql = "FROM TbUser u WHERE u.name = ?";
+		TbUser user = (TbUser) session.createQuery(hql).setParameter(0, name).uniqueResult();
+		return user;
 	}
 
 }

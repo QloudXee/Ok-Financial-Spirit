@@ -1,4 +1,4 @@
-package com.q.model2;
+package com.q.model;
 // Generated 2017-10-16 11:22:22 by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
@@ -39,7 +39,6 @@ public class TbImport implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Long getId() {
 		return this.id;

@@ -14,14 +14,27 @@
 			$("#regiest").click(function(){
 				window.location.href = "regiest.jsp";
 			})
-			//根据用户名查询
-			$("#query").click(function(){
-				var username = $("#username").val();
-				window.location.href = "query?name="+username;
-			})
-			//用户查询页面
+			//重新加载列表
 			$("#query").click(function(){
 				window.location.href = "getAll";
+			})
+			//上一页点击事件
+			$("#previous").click(function(){
+				window.location.href = "previous?total="+${total}+"&page="+${page};
+			})
+			//下一页点击事件
+			$("#next").click(function(){
+				window.location.href = "next?total="+${total}+"&page="+${page};
+			})
+			//页面跳转
+			$("#pageButton").click(function(){
+				var pageNum = $("#pageNum").val();
+				window.location.href = "toPage?total="+${total}+"&page="+pageNum;
+			})
+			//根据用户名查询
+			$("#select").click(function(){
+				var username = $("#username").val();
+				window.location.href = "query?name="+username;
 			})
 		})
 	</script>
@@ -38,7 +51,7 @@
 		<div id="top">
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			用户名称：<input type="text" name="username" id="username">
-			<button id="query">查询</button>
+			<button id="select">查询</button>
 		</div>
 	<br>
 	<table>
@@ -60,15 +73,9 @@
 					<td width="150px">${user.email}</td>
 					<td width="80px">${user.sex}</td>
 					<td width="100px">${user.balance}
-						<%-- <c:set var="statues" value="${user.statues}"></c:set>
-						<c:if test="${statues==1}">
-							用户
-						</c:if>
-						<c:if test="${statues==2}">
-							管理员
-						</c:if> --%>
 					</td>
-					<td width="100px">编辑|<a id="delete" href="deleteUser?id=${user.id}&page=${page}&total=${total}">删除</a></td>
+					<td width="100px"><a id="alert" href="toAlertUser?id=${user.id}&name=${user.name}&balance=${user.balance}">编辑</a>|
+					<a id="delete" href="deleteUser?id=${user.id}&page=${page}&total=${total}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

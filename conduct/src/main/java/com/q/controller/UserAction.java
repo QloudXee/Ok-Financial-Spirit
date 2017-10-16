@@ -131,6 +131,16 @@ public class UserAction{
 		}
 	}
 	
+	//ÓÃ»§µÇÂ¼
+	public String userLogin(){
+		int i = userService.login(name,password);
+		if(i == 1){
+			return "success";
+		}else{
+			return "fail";
+		}
+	}
+	
 	@Resource(name="userService")
 	public void setUserService(UserService userService) {
 		this.userService = userService;
