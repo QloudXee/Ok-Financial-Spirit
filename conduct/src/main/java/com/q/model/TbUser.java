@@ -1,4 +1,5 @@
-package com.q.model;
+package com.q.model2;
+// Generated 2017-10-16 11:22:22 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,24 +23,30 @@ public class TbUser implements java.io.Serializable {
 	private String name;
 	private String password;
 	private Integer balance;
-	private int statues;
-	private Set<TbOrder> tbOrders = new HashSet<TbOrder>(0);
+	private Integer statues;
 	private String email;
 	private String sex;
+	private Set<TbImport> tbImports = new HashSet<TbImport>(0);
+	private Set<TbOutput> tbOutputs = new HashSet<TbOutput>(0);
 
 	public TbUser() {
 	}
 
-	public TbUser(String name, String password, Integer balance, int statues, Set<TbOrder> tbOrders) {
+	public TbUser(String name, String password, Integer balance, Integer statues, String email, String sex,
+			Set<TbImport> tbImports, Set<TbOutput> tbOutputs) {
 		this.name = name;
 		this.password = password;
 		this.balance = balance;
 		this.statues = statues;
-		this.tbOrders = tbOrders;
+		this.email = email;
+		this.sex = sex;
+		this.tbImports = tbImports;
+		this.tbOutputs = tbOutputs;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "id", unique = true, nullable = false)
 	public Long getId() {
 		return this.id;
@@ -77,40 +84,48 @@ public class TbUser implements java.io.Serializable {
 	}
 
 	@Column(name = "statues")
-	public int getStatues() {
+	public Integer getStatues() {
 		return this.statues;
 	}
 
-	public void setStatues(int statues) {
+	public void setStatues(Integer statues) {
 		this.statues = statues;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tbUser")
-	public Set<TbOrder> getTbOrders() {
-		return this.tbOrders;
-	}
-
-	public void setTbOrders(Set<TbOrder> tbOrders) {
-		this.tbOrders = tbOrders;
-	}
-
-	@Column(name = "email")
+	@Column(name = "email", length = 30)
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	@Column(name = "sex")
+	@Column(name = "sex", length = 5)
 	public String getSex() {
-		return sex;
+		return this.sex;
 	}
 
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tbUser")
+	public Set<TbImport> getTbImports() {
+		return this.tbImports;
+	}
+
+	public void setTbImports(Set<TbImport> tbImports) {
+		this.tbImports = tbImports;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tbUser")
+	public Set<TbOutput> getTbOutputs() {
+		return this.tbOutputs;
+	}
+
+	public void setTbOutputs(Set<TbOutput> tbOutputs) {
+		this.tbOutputs = tbOutputs;
+	}
+
 }
