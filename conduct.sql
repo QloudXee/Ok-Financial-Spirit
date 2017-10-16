@@ -10,28 +10,45 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-10-12 15:44:36
+Date: 2017-10-16 11:29:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for tb_order
+-- Table structure for tb_import
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_order`;
-CREATE TABLE `tb_order` (
-  `orderId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userId` bigint(20) DEFAULT NULL,
-  `inputNum` int(11) DEFAULT '0',
-  `outNum` int(11) DEFAULT '0',
-  `orderStatues` int(11) DEFAULT '1',
-  PRIMARY KEY (`orderId`),
-  KEY `userId` (`userId`),
-  CONSTRAINT `tb_order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `tb_user` (`id`)
+DROP TABLE IF EXISTS `tb_import`;
+CREATE TABLE `tb_import` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `inputNum` int(11) DEFAULT NULL,
+  `userId` bigint(20) NOT NULL,
+  `statues` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `touser` (`userId`),
+  CONSTRAINT `touser` FOREIGN KEY (`userId`) REFERENCES `tb_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_order
+-- Records of tb_import
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_output
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_output`;
+CREATE TABLE `tb_output` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `outputNum` int(11) DEFAULT NULL,
+  `userId` bigint(20) NOT NULL,
+  `statues` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `user` (`userId`),
+  CONSTRAINT `user` FOREIGN KEY (`userId`) REFERENCES `tb_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_output
 -- ----------------------------
 
 -- ----------------------------
