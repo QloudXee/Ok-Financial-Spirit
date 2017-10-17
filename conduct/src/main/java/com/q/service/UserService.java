@@ -47,12 +47,14 @@ public class UserService {
 		List<TbUser> userList = userDao.queryUserByName(name);
 		return userList;
 	}
-
-	@Resource(name="userDao")
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-
+	
+	/**
+	 * 获取总页数
+	 * dao获取所有用户信息
+	 * 这里根据用户list的size获取总页数，一页十个用户
+	 * @author Qloud
+	 * @return int
+	 * */
 	public int getTotal() {
 		List<TbUser> users = userDao.getTotal();
 		int total = 0;
@@ -61,10 +63,19 @@ public class UserService {
 			total++;
 			temp-=10;
 		}
-		total++;
+		if(temp>0){
+			total++;
+		}
 		return total;
 	}
 
+	/**
+	 * 用户登录
+	 * dao返回用户信息
+	 * 这里效验密码是否一致
+	 * @author Qluod
+	 * @return int
+	 * */
 	public int login(String name, String password) {
 		TbUser user = userDao.login(name);
 		int i = 0;
@@ -80,4 +91,8 @@ public class UserService {
 		}
 	}
 	
+	@Resource(name="userDao")
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 }

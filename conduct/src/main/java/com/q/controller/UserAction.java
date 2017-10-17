@@ -57,7 +57,7 @@ public class UserAction{
 		if(page<=1){
 			return "fail";
 		}else if(page>1){
-			page-=1;
+			page--;
 			userList = userService.queryAllUser(page);
 			return "success";
 		}
@@ -69,7 +69,7 @@ public class UserAction{
 		if(page>=total){
 			return "fail";
 		}else if(page<total){
-			page+=1;
+			page++;
 			userList = userService.queryAllUser(page);
 			return "success";
 		}

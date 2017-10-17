@@ -45,7 +45,7 @@ private SessionFactory sessionFactory;
 		String hql = "FROM TbUser u WHERE u.statues = 1 OR u.statues = 2";
 		Query query = session.createQuery(hql);
 		query.setFirstResult(page*10-10);
-		query.setMaxResults(page*9);
+		query.setMaxResults(9);
 		List<TbUser> userList = query.list();
 		return userList;
 	}
@@ -87,7 +87,13 @@ private SessionFactory sessionFactory;
 		Session session = getSession(); 
 		session.update(user);
 	}
-
+	
+	/**
+	 * 用户登录
+	 * 这里获取用户信息
+	 * @author Qloud
+	 * @return TbUser
+	 * */
 	public TbUser login(String name) {
 		Session session = getSession();
 		String hql = "FROM TbUser u WHERE u.name = ?";
