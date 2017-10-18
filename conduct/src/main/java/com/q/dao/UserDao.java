@@ -16,7 +16,7 @@ import com.q.model.TbUser;
 @Repository("userDao")
 public class UserDao {
 
-private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	@Resource(name="mySessionFactory")
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -37,6 +37,7 @@ private SessionFactory sessionFactory;
 	 * 查询全部用户
 	 * 此处为查询全部符合条件的最多十个用户
 	 * 一个页面最多显示十个用户
+	 * @param page
 	 * @author Qloud
 	 * @return List<TbUser>
 	 * */
@@ -45,7 +46,7 @@ private SessionFactory sessionFactory;
 		String hql = "FROM TbUser u WHERE u.statues = 1 OR u.statues = 2";
 		Query query = session.createQuery(hql);
 		query.setFirstResult(page*10-10);
-		query.setMaxResults(9);
+		query.setMaxResults(10);
 		List<TbUser> userList = query.list();
 		return userList;
 	}
@@ -64,6 +65,7 @@ private SessionFactory sessionFactory;
 	
 	/**
 	 * 根据用户名查询用户
+	 * @param name
 	 * @author Qloud
 	 * @return List<TbUser>
 	 * */
@@ -78,8 +80,7 @@ private SessionFactory sessionFactory;
 	//删除用户
 	public void deleteUser(TbUser user) {
 		Session session = getSession(); 
-		String hql = "UPDATE TbUser user SET user.statues = 0 WHERE id = ?";
-		session.createQuery(hql).setParameter(0, user.getId());
+		session.update(user);
 	}
 
 	//修改用户
@@ -91,6 +92,7 @@ private SessionFactory sessionFactory;
 	/**
 	 * 用户登录
 	 * 这里获取用户信息
+	 * @param name
 	 * @author Qloud
 	 * @return TbUser
 	 * */
@@ -99,6 +101,31 @@ private SessionFactory sessionFactory;
 		String hql = "FROM TbUser u WHERE u.name = ?";
 		TbUser user = (TbUser) session.createQuery(hql).setParameter(0, name).uniqueResult();
 		return user;
+	}
+	
+	/**
+	 * 根据用户id查询
+	 * @param id
+	 * @author Qloud
+	 * @return tbUser
+	 * */
+	public TbUser getUserById(long id){
+		Session session = getSession();
+		String hql = "FROM TbUser u WHERE u.id = ?";
+		TbUser tbUser = (TbUser) session.createQuery(hql)
+										.setParameter(0, id)
+										.uniqueResult();
+		return tbUser;
+	}
+
+	/**
+	 * 因为新增进账，用户余额增加
+	 * @param inputNum,userId 
+	 * */
+	public void addBalance(Integer nowbalance, Long userId) {
+		Session session = getSession();
+		String hql = "UPDATE TbUser u SET u.balance = ? WHERE id = ?";
+		session.createQuery(hql).setParameter(0, nowbalance).setParameter(1, userId);
 	}
 
 }

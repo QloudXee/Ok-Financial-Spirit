@@ -31,7 +31,9 @@ public class UserService {
 	
 	//ÓÃ»§É¾³ý
 	public List<TbUser> deleteUser(TbUser user, int page){
-		userDao.deleteUser(user);
+		TbUser user1 = userDao.getUserById(user.getId());
+		user1.setStatues(0);
+		userDao.deleteUser(user1);
 		List<TbUser> userList = userDao.getAll(page);
 		return userList;
 	}
@@ -92,7 +94,8 @@ public class UserService {
 	}
 	
 	@Resource(name="userDao")
-	public void setUserDao(UserDao userDao) {
+	public void setUserDao(UserDao userDao){
 		this.userDao = userDao;
 	}
+
 }

@@ -3,13 +3,13 @@ package com.q.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.management.Query;
 
-import com.opensymphony.xwork2.ModelDriven;
-import com.q.dao.UserDao;
+import org.springframework.stereotype.Controller;
+
 import com.q.model.TbUser;
 import com.q.service.UserService;
 
+@Controller
 public class UserAction{
 	
 	private UserService userService;
@@ -108,8 +108,7 @@ public class UserAction{
 	public String deleteUser(){
 		TbUser user = new TbUser();
 		user.setId(id);
-		int page1 = page;
-		userList = userService.deleteUser(user,page1);;
+		userList = userService.deleteUser(user,page);
 		return "success";
 	}
 	
