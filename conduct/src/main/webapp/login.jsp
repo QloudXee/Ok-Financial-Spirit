@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -8,6 +8,21 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#forget").click(function(){
+				window.location.href="forget.jsp";
+			})
+			$("#regist").click(function(){
+				window.location.href="userRegister.jsp";
+			})
+			$("#login").click(function(){
+				var name = $("#userName").val();
+				var password = $("#userPassword").val();
+				window.location.href="login.do?name="+name+"&password="+password;
+			})
+		})
+	</script>
 </head>
 <body>
 
@@ -20,15 +35,15 @@
 			<h1>个人理财精灵</h1>
 		</div>
 		<div class="boby_menu"> 
-	   <form id = "form1" name = "form1" action="login"  method="post">
+	   <form id = "form1" name = "form1" action="login.do"  method="post">
 		<div class="box2">
   	 		<label class="">用户名称：</label><input id="userName" name="name" type="text"  placeholder="请输入您的用户名！"><br>
   	 		<label class="">用户密码：</label><input id="userPassword" name="password" type="password" placeholder="请输入您的密码！"><br>
 		</div>	
 	  <div class="box3">
-		   <button type="submit" name="button">登录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		   <button type="reset" name="button">重置</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		   <button type="button" name="button"><a id="register" href="userRegister.jsp">注册</a></button><br>
+		   <button type="submit" id="login">登录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   <button type="button" id="forget">忘记密码</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   <button type="button" id="regist">注册</button><br>
 			</div>
 		</form>
 		 <hr>

@@ -5,6 +5,7 @@
  
 <struts>
 	<!-- 用户struts包 -->
+	<constant name="struts.action.extension" value="do"/>  
     <package name="userPackage" extends="struts-default" namespace="/">
         <action name="regiest" class="com.q.controller.UserAction" method="regiest">
         	<result name="success">index.jsp</result>
@@ -38,6 +39,10 @@
         </action>
         <action name="login" class="com.q.controller.UserAction" method="userLogin">
         	<result name="success">userList.jsp</result>
+        	<result name="fail">fail.jsp</result>
+        </action>
+        <action name="forget" class="com.q.controller.UserAction" method="forget">
+        	<result name="success">login.jsp</result>
         	<result name="fail">fail.jsp</result>
         </action>
     </package>

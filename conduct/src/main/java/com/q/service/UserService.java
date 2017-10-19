@@ -78,18 +78,32 @@ public class UserService {
 	 * @author Qluod
 	 * @return int
 	 * */
-	public int login(String name, String password) {
+	public TbUser login(String name, String password) {
 		TbUser user = userDao.login(name);
-		int i = 0;
 		if(user == null){
-			i = 0;
-			return i;
+			return null;
 		}else if(user.getPassword().equals(password)){
-			i = 1;
-			return i;
+			return user;
 		}else{
-			i = 2;
-			return i;
+			return null;
+		}
+	}
+	
+	//查询所有用户信息
+	public List<TbUser> getAllUser(){
+		List<TbUser> users = userDao.getTotal();
+		return users;
+	}
+	
+	//忘记密码
+	public int forget(String name, String email, String password) {
+		TbUser user = userDao.getUserByName(name);
+		if(user.getEmail().equals(email)){
+			user.setPassword(password);
+			userDao.forget(user);
+			return 1;
+		}else{
+			return 0;
 		}
 	}
 	
@@ -97,5 +111,4 @@ public class UserService {
 	public void setUserDao(UserDao userDao){
 		this.userDao = userDao;
 	}
-
 }

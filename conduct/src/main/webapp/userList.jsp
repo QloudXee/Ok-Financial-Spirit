@@ -12,29 +12,29 @@
 		$(document).ready(function(){
 			//跳转至注册页面
 			$("#regiest").click(function(){
-				window.location.href = "regiest.jsp";
+				window.location.href = "userRegister.jsp";
 			})
 			//重新加载列表
 			$("#query1").click(function(){
-				window.location.href = "getAll";
+				window.location.href = "getAll.do";
 			})
 			//上一页点击事件
 			$("#previous").click(function(){
-				window.location.href = "previous?total="+${total}+"&page="+${page};
+				window.location.href = "previous.do?total="+${total}+"&page="+${page};
 			})
 			//下一页点击事件
 			$("#next").click(function(){
-				window.location.href = "next?total="+${total}+"&page="+${page};
+				window.location.href = "next.do?total="+${total}+"&page="+${page};
 			})
 			//页面跳转
 			$("#pageButton").click(function(){
 				var pageNum = $("#pageNum").val();
-				window.location.href = "toPage?total="+${total}+"&page="+pageNum;
+				window.location.href = "toPage.do?total="+${total}+"&page="+pageNum;
 			})
 			//根据用户名查询
 			$("#query").click(function(){
 				var username = $("#username").val();
-				window.location.href = "query?name="+username;
+				window.location.href = "query.do?name="+username;
 			})
 		})
 		
@@ -75,8 +75,8 @@
 					<td width="150px">${user.email}</td>
 					<td width="80px">${user.sex}</td>
 					<td width="100px">${user.balance}</td>
-					<td width="100px"><a id="alert" href="toAlertUser?id=${user.id}&name=${user.name}&balance=${user.balance}">编辑</a>|
-					<a id="delete" href="deleteUser?id=${user.id}&page=${page}&total=${total}">删除</a></td>
+					<td width="100px"><a id="alert" href="toAlertUser.do?id=${user.id}&name=${user.name}&balance=${user.balance}">编辑</a>|
+					<a id="delete" href="deleteUser.do?id=${user.id}&page=${page}&total=${total}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

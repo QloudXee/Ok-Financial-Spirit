@@ -127,5 +127,20 @@ public class UserDao {
 		String hql = "UPDATE TbUser u SET u.balance = ? WHERE id = ?";
 		session.createQuery(hql).setParameter(0, nowbalance).setParameter(1, userId);
 	}
+	
+	/**
+	 * @return 
+	 * */
+	public TbUser getUserByName(String name){
+		Session session = getSession();
+		String hql = "FROM TbUser u WHERE u.name = ?";
+		TbUser user = (TbUser) session.createQuery(hql).setParameter(0, name).uniqueResult();
+		return user;
+	}
+
+	public void forget(TbUser user) {
+		Session session = getSession();
+		session.update(user);
+	}
 
 }

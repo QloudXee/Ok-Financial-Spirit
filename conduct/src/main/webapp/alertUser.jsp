@@ -11,13 +11,13 @@
 	<script>
 		$(document).ready(function(){
 			$("#query").click(function(){
-				window.location.href = "getAll";
+				window.location.href = "getAll.do";
 			})
 			$("#regiest").click(function(){
-				window.location.href = "regiest";
+				window.location.href = "userRegister.jsp";
 			})
 			$("#button4").click(function(){
-				window.location.href = "getAll";
+				history.go(-1);
 			})
 		})
 	</script>
@@ -36,7 +36,7 @@
 		</div>
 		<div id="mid">
 		<br><br>
-		<form action="alertUser">
+		<form action="alertUser.do">
 			<input type="text" id="input0" value="${user.id}" name="id" hidden="hidden">
 			<input type="text" id="input0" value="${user.balance}" name="balance" hidden="hidden">
 			用 户 名 称 ： <input type="text" id="input1" name="name" readonly="readonly" value="${user.name}"><br><br><br>

@@ -3,7 +3,9 @@ package com.q.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import com.q.model.TbUser;
@@ -37,11 +39,19 @@ public class UserAction{
 		tu.setBalance(0);
 		tu.setStatues(1);
 		if(name!=null && password.equals(repassword) && password!=null){
-			userService.regiest(tu);
+			List<TbUser> users = userService.getAllUser();
+			for(TbUser userTemp : users){
+				if(userTemp.getName().equals(tu.getName())){
+					return "fail";
+				}else{
+					userService.regiest(tu);
+					return "success";
+				}
+			}
 		}else{
 			return "fail";
 		}
-		return "success";
+		return null;
 	}
 	
 	//查询所有用户
@@ -132,12 +142,25 @@ public class UserAction{
 	
 	//用户登录
 	public String userLogin(){
-		int i = userService.login(name,password);
-		if(i == 1){
+		TbUser userlogin = userService.login(name,password);
+		if(userlogin != null && userlogin.getStatues() != 0){
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute("user", userlogin);
 			return "success";
 		}else{
 			return "fail";
 		}
+	}
+	
+	//忘记密码
+	public String forget(){
+		int temp = userService.forget(name,email,password);
+		if(temp == 1){
+			return "success";
+		}else{
+			return "fail";
+		}
+		
 	}
 	
 	@Resource(name="userService")
