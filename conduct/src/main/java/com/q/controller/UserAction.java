@@ -160,7 +160,13 @@ public class UserAction{
 		}else{
 			return "fail";
 		}
-		
+	}
+	
+	//ÓÃ»§ÍË³ö
+	public String logout(){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.invalidate();
+		return "success";
 	}
 	
 	@Resource(name="userService")

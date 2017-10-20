@@ -10,6 +10,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.q.model.TbUser;
+
 public class LoginFilter implements Filter {
 
     public LoginFilter() {
@@ -23,11 +25,16 @@ public class LoginFilter implements Filter {
 	        HttpServletResponse res = (HttpServletResponse) response;  
 	        // 判断当前session是否有用户信息  
 	        String url = req.getServletPath();
-	        if(req.getSession().getAttribute("user") == null && url.equals("/conduct/login.jsp") ) {  
+	        if((url.indexOf("/login.jsp")>-1)||(url.indexOf("LoginServlet")>-1)||(url.indexOf("Css")>-1)||(url.indexOf("images")>-1)){
+				chain.doFilter(req, res);
+				return;
+			}
+	        if(req.getSession().getAttribute("user") == null){  
 	            res.sendRedirect(req.getContextPath() + "/login.jsp");
 	            return;
+	        }else{
+	        	chain.doFilter(req, res); 
 	        }  
-	        chain.doFilter(request, response);  
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

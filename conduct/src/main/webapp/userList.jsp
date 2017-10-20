@@ -36,6 +36,10 @@
 				var username = $("#username").val();
 				window.location.href = "query.do?name="+username;
 			})
+			//用户退出
+			$("#logout").click(function(){
+				window.location.href = "logout.do"
+			})
 		})
 		
 	</script>
@@ -47,7 +51,8 @@
 	</div>
 	<div id="div1">
 		<button class="button1" id="query1">用户查询</button><br><br>
-		<button class="button1" id="regiest">用户注册</button>
+		<button class="button1" id="regiest">用户注册</button><br><br>
+		<button class="button1" id="logout">用户退出</button><br><br>
 	</div>
 	<div id="div2">
 		<div id="top">
