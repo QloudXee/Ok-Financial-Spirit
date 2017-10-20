@@ -25,7 +25,9 @@ public class LoginFilter implements Filter {
 	        HttpServletResponse res = (HttpServletResponse) response;  
 	        // 判断当前session是否有用户信息  
 	        String url = req.getServletPath();
-	        if((url.indexOf("/login.jsp")>-1)||(url.indexOf("LoginServlet")>-1)||(url.indexOf("Css")>-1)||(url.indexOf("images")>-1)){
+	        if((url.indexOf("/login.jsp")>-1)||(url.indexOf("css")>-1)||(url.indexOf("images")>-1)||(url.indexOf("mp4")>-1)
+	        		||(url.indexOf("login")>-1)||url.indexOf("/userRegister.jsp")>-1||url.indexOf("/forget.jsp")>-1
+	        		||url.indexOf("/check")>-1){
 				chain.doFilter(req, res);
 				return;
 			}

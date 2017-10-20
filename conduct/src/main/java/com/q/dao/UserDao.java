@@ -13,6 +13,14 @@ import org.springframework.stereotype.Repository;
 
 import com.q.model.TbUser;
 
+/**
+ * 用户数据操作层
+ * 增加(user)
+ * 删除(user)设置状态为0
+ * 修改(user)
+ * 查询(name/id)返回类型有list 也有单个user，根据情况决定使用不同的
+ * @author Qloud
+ * */
 @Repository("userDao")
 public class UserDao {
 
@@ -27,7 +35,10 @@ public class UserDao {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	//用户注册
+	/**
+	 * 用户注册
+	 * @param user
+	 * */
 	public void regiest(TbUser user) {
 		Session session = getSession(); 
 		session.save(user);
@@ -38,7 +49,6 @@ public class UserDao {
 	 * 此处为查询全部符合条件的最多十个用户
 	 * 一个页面最多显示十个用户
 	 * @param page
-	 * @author Qloud
 	 * @return List<TbUser>
 	 * */
 	public List<TbUser> getAll(int page) {
@@ -77,13 +87,19 @@ public class UserDao {
 		return users;
 	}
 
-	//删除用户
+	/**
+	 * 删除用户
+	 * @param usere
+	 * */
 	public void deleteUser(TbUser user) {
 		Session session = getSession(); 
 		session.update(user);
 	}
 
-	//修改用户
+	/**
+	 * 修改用户
+	 * @param user
+	 * */
 	public void alertUser(TbUser user) {
 		Session session = getSession(); 
 		session.update(user);
@@ -129,7 +145,9 @@ public class UserDao {
 	}
 	
 	/**
-	 * @return 
+	 * 根据用户名查询用户信息
+	 * @param name
+	 * @return user
 	 * */
 	public TbUser getUserByName(String name){
 		Session session = getSession();
@@ -137,7 +155,11 @@ public class UserDao {
 		TbUser user = (TbUser) session.createQuery(hql).setParameter(0, name).uniqueResult();
 		return user;
 	}
-
+	
+	/**
+	 * 忘记密码
+	 * @param useer
+	 * */
 	public void forget(TbUser user) {
 		Session session = getSession();
 		session.update(user);

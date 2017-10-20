@@ -1,5 +1,8 @@
 package com.q.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,9 +11,14 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.q.model.TbUser;
 import com.q.service.UserService;
 
+/**
+ * 用户注册、查询、修改、删除、登录、退出、改密、用户列表跳页、注册时验证用户是否存在
+ * @author Qluod
+ * */
 @Controller
 public class UserAction{
 	
@@ -26,6 +34,8 @@ public class UserAction{
 	
 	private int page;
 	private int total;
+	
+	private InputStream inputStream;
 	
 	List<TbUser> userList = null;
 	
@@ -97,10 +107,7 @@ public class UserAction{
 		return null;
 	}
 	
-	/**
-	 * 查询单个用户
-	 * 根据用户名
-	 * */
+	//根据用户名查询单个用户
 	public String query(){
 		userList = userService.queryUserByName(name);
 		if(name == null){
@@ -166,6 +173,18 @@ public class UserAction{
 	public String logout(){
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		session.invalidate();
+		return "success";
+	}
+	
+	//用户名确认
+	public String check() throws IOException{
+		TbUser user = userService.getUserByName(name);
+		JSONObject jsonObject = new JSONObject();
+		if(user.getName().equals(name)){
+			//String msg = "用户名已存在";
+			jsonObject.put("msg", "用户名已存在");
+			inputStream = new ByteArrayInputStream(jsonObject.toJSONString().getBytes("utf-8"));
+		}
 		return "success";
 	}
 	
@@ -257,5 +276,8 @@ public class UserAction{
 	public void setBalance(Integer balance) {
 		this.balance = balance;
 	}
-	
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
 }

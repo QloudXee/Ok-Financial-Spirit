@@ -13,14 +13,24 @@
           /*灰色调*/
        /*    -webkit-filter:grayscale(100%)
          */
+}
+.box{
+	margin: auto;
+	margin-top: 80px;
+	width: 600px;
+	height: 650px;
+	background-color: #FEFEFE;
+	opacity: 0.8;
+	border-radius: 20px 20px 20px 20px;
+
 }	
 .box1{
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 80px;
 	width: 600px;
-	height: 600px;
+	height: 750px;
 	background-color: #FEFEFE;
-	opacity: 0.5;
+	opacity: 0.8;
 	border-radius: 20px 20px 20px 20px;
 
 }
@@ -48,7 +58,7 @@ img{
 	background-color: #FEFEFE;
 }
 .box2{
-	margin-top: 50px;
+	margin-top: 20px;
 	line-height: 90px;
 	font-size: 20px;
 }
@@ -58,10 +68,11 @@ img{
 }
 .box3{
 	width: 500px;
-	height: 150px;
+	height: 100px;
+
 }
 .box3 button{
-	margin-top: 70px;
+	margin-top: 60px;
 	width: 100px;
 	height: 30px;
 	cursor:pointer;
@@ -70,8 +81,14 @@ img{
 	text-decoration: none;
 	color: black;
 }
+hr{
+	margin-left: -31px;
+	margin-top: 20px;
+	width: 600px;
+}
 .footer{
 	margin-top: 30px;
+
 }
 .text2{
 	float: left;
@@ -98,7 +115,7 @@ img{
 .box4{
 	font-size: 20px;
 	margin-left: 50px;
-	line-height: 70px;
+	line-height: 50px; 
 }
 .box5{
 	font-size: 20px;
@@ -116,10 +133,36 @@ img{
 .box6 button{
 	width: 100px;
 	height: 30px;
-	margin-top: 30px;
+	margin-top: 50px;
 	margin-left: 30px;
 }
 .box6 button a{
 	text-decoration: none;
 	color: black;
+}
+.box7{
+	margin-top: 30px;
+	font-size: 20px;
+	margin-left: 15px;
+}
+.box7 input{
+	width: 200px;
+	height: 30px;
+	margin-left: 12px;
+}
+#f1{
+	margin-left: 100px;
+	color: red;
+	font-size: 15px;
+}#f2{
+	margin-left: 100px;
+	color: red;
+	font-size: 15px;
+}#f3{
+	margin-left: 100px;
+	font-size: 15px;
+	color: red;
+}#f4{
+	margin-left: 100px;
+	color: red;
 }
