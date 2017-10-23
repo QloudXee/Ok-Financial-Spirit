@@ -19,6 +19,9 @@
 			var id = ${userLogin.id};
 			window.location.href = "toAlertUser.do?id="+id;
 		})
+		$("#info").click(function(){
+			window.location.href = "userInformation.jsp";
+		})
 	})
 </script>
 </head>
@@ -28,6 +31,7 @@
 	</div>
 	<div id="div1">
 		<button id="alert" class="button1">账号管理</button><br><br>
+		<button id="info" class="button1">账号信息</button><br><br>
 		<button id="#" class="button1">理财助手</button><br><br><br><br>
 		<button id="logout" class="button1">用户登出</button><br><br><br><br>
 	</div>

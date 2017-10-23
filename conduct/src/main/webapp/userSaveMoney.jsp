@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="saveMoney" method="get">
+<form action="saveMoney.do" method="get">
 	描述：<input type="text" name="describe"><br />
 	类型：<input type="radio" name="type" value="0">收入
 		<input type="radio" name="type" value="1">支出<br />

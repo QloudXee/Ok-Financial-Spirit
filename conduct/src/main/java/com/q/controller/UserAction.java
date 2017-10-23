@@ -21,7 +21,7 @@ import com.q.service.UserService;
  * 用户注册、查询、修改、删除、登录、退出、改密、用户列表跳页、注册时验证用户是否存在
  * @author Qluod
  * */
-@Controller
+
 public class UserAction{
 	
 	private UserService userService;

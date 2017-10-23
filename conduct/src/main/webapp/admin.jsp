@@ -52,7 +52,7 @@
 				<br><br><br>
 				<h1 id="welcome">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎您!
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						管理员:&nbsp;&nbsp;${user.name}</h1>
+						管理员:&nbsp;&nbsp;${userLogin.name}</h1>
 		</div>
 	</div>
 </body>

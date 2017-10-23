@@ -14,6 +14,7 @@ import com.q.service.BalanceService;
  * @author 13255
  *
  */
+
 public class LoginUserAction {
 	private String name;
 	private String sex;

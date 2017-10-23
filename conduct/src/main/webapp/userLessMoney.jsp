@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="lessMoney" method="get">
+<form action="lessMoney.do" method="get">
 	描述：<input type="text" name="describe"><br />
 	类型：<input type="radio" name="type" value="0">收入
-		<input type="radio" name="type" value="1">支出<br />
+		<input type="radio" name="type" value="1">支出<br/>
 	money:<input type="text" name="jsp_money"><br />
 	<button type="submit">提交</button>
 </form>
