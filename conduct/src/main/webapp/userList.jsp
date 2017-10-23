@@ -20,11 +20,22 @@
 			})
 			//上一页点击事件
 			$("#previous").click(function(){
-				window.location.href = "previous.do?total="+${total}+"&page="+${page};
+				var page = ${page};
+				if(page == 1){
+					alert("已经是第一页!");
+				}else{
+					window.location.href = "previous.do?total="+${total}+"&page="+${page};
+				}
 			})
 			//下一页点击事件
 			$("#next").click(function(){
-				window.location.href = "next.do?total="+${total}+"&page="+${page};
+				var page = ${page};
+				var total = ${total};
+				if(page == total){
+					alert("已经是最后一页!");
+				}else{
+					window.location.href = "next.do?total="+${total}+"&page="+${page};
+				}
 			})
 			//页面跳转
 			$("#pageButton").click(function(){
@@ -38,7 +49,11 @@
 			})
 			//用户退出
 			$("#logout").click(function(){
-				window.location.href = "logout.do"
+				window.location.href = "logout.do";
+			})
+			//返回上一页面
+			$("#back").click(function(){
+				window.location.href = "admin.jsp";
 			})
 		})
 		
@@ -52,7 +67,7 @@
 	<div id="div1">
 		<button class="button1" id="query1">用户查询</button><br><br>
 		<button class="button1" id="regiest">用户注册</button><br><br>
-		<button class="button1" id="logout">用户退出</button><br><br>
+		<button class="button1" id="back">返回首页</button><br><br>
 	</div>
 	<div id="div2">
 		<div id="top">
@@ -60,32 +75,33 @@
 			用户名称：<input type="text" name="username" id="username">
 			<button id="query">查询</button>
 		</div>
-	<br>
-	<table>
-		<tbody>
-			<tr width=100%>
-				<td width="40px">全选</td>
-				<td width="120px">用户名称：</td>
-				<td width="70px">密码</td>
-				<td width="150px">邮箱</td>
-				<td width="80px">性别</td>
-				<td width="100px">余额</td>
-				<td width="100px">操作</td>
-			</tr>
-			<c:forEach items="${userList}" var="user">
+	<div id="mid">
+		<table>
+			<tbody>
 				<tr width=100%>
-					<td width="40px"><input type="radio"></td>
-					<td width="110px">&nbsp; ${user.name} &nbsp;</td>
-					<td width="70px">${user.password}</td>
-					<td width="150px">${user.email}</td>
-					<td width="80px">${user.sex}</td>
-					<td width="100px">${user.balance}</td>
-					<td width="100px"><a id="alert" href="toAlertUser.do?id=${user.id}&name=${user.name}&balance=${user.balance}">编辑</a>|
-					<a id="delete" href="deleteUser.do?id=${user.id}&page=${page}&total=${total}">删除</a></td>
+					<td width="40px">全选</td>
+					<td width="120px">用户名称：</td>
+					<td width="70px">密码</td>
+					<td width="150px">邮箱</td>
+					<td width="80px">性别</td>
+					<td width="100px">余额</td>
+					<td width="100px">操作</td>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+				<c:forEach items="${userList}" var="user">
+					<tr width=100%>
+						<td width="40px"><input type="radio"></td>
+						<td width="110px">&nbsp; ${user.name} &nbsp;</td>
+						<td width="70px">${user.password}</td>
+						<td width="150px">${user.email}</td>
+						<td width="80px">${user.sex}</td>
+						<td width="100px">${user.balance}</td>
+						<td width="100px"><a id="alert" href="toAlertUser.do?id=${user.id}&name=${user.name}&balance=${user.balance}">编辑</a>|
+						<a id="delete" href="deleteUser.do?id=${user.id}&page=${page}&total=${total}">删除</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 	<br>
 	<hr>
 		<a id="previous" href="#">上一页</a>

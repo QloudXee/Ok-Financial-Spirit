@@ -1,0 +1,204 @@
+.toBody{
+	width: 100%;
+	height: 60px;
+	background-color:	#FFFFFF;
+	box-shadow:10px 10px 10px 10px #888888;
+}
+.tohead img{
+	float: left;
+	margin-left: 20px;
+	width: 130px;
+	height: 60px;
+}
+.toBody .s1{
+	float: left;
+	width: 300px;
+	height: 30px;
+	margin-top: 20px;		
+	font-size: 25px;
+	color: #F96;
+	font-family:"Times New Roman", Times, serif;
+}
+.s1 span:hover{
+	cursor: pointer;
+}
+.toBody .s2{
+	width: 80px;
+	height: 60px;
+	float: left;
+	margin-top: 20px;
+	font-size: 30px;
+	font-family:"楷体";
+}
+.s2 a{
+	text-decoration: none;
+	color: black;
+}
+.s2 a:hover{
+	cursor: pointer;
+	color: red;
+}
+.s3{
+	width: 600px;
+	height: 40px;
+	float: left;
+	margin-left: 60px;
+}
+#welcome{
+	font-size: 25px;
+	height: 40px;
+	margin-top: 20px;
+}
+.s4{
+	width: 300px;
+	height: 60px;
+	float: left;
+	margin-left: 20px;
+	line-height: 60px;
+	font-size: 25px;
+	font-family: "楷体";
+}
+.s4 span a{
+	color: black;
+}
+.s4 span a:hover{
+	color: red;
+}
+.s4 span:hover{
+	cursor: pointer;
+}
+.s5{
+	width: 200px;
+	height: 60px;
+	float: right;
+	font-size: 25px;
+	line-height: 60px;
+}
+.s5 a{
+	text-decoration: none;
+	color: black;
+}
+.s5 a:hover{
+	color: red;
+}
+.left_body{
+	float: left;
+	margin-left: -530px;
+	width: 150px;
+	height: 620px;
+	background-color:	#FFFFFF;
+	box-shadow:10px 10px 10px 10px #888888;
+}
+#a1 a{
+	display: block;
+	text-align: center;
+	line-height: 40px;
+	color: black;
+	font-size: 30px;
+	text-decoration: none;
+}
+#a2 a{
+	display: block;
+	text-align: center;
+	line-height: 40px;
+	color: black;
+	font-size: 30px;
+	text-decoration: none;
+}
+#a3 a{
+	display: block;
+	text-align: center;
+	line-height: 40px;
+	color: black;
+	font-size: 30px;
+	text-decoration: none;
+}
+#a1:hover{
+	background-color: 	#808080;
+}
+#a2:hover{
+	background-color: 	#808080;
+}
+#a3:hover{
+	background-color: 	#808080;
+}
+.boby_menu{
+	width:1730px;
+	height: 600px;
+	margin: 22px 0 0 170px;
+	background-color: #FFF0F5;	
+}
+#playVideo{
+	float: left;
+	margin: 30px 0 0 300px;
+	width: 800px;
+	height: 500px;
+	border:solid #F5F5F5;
+	border-radius: 20px 20px 20px 20px;
+
+}
+#videos{
+	width: 800px;
+	height: 500px; 
+}
+.box4{
+	float: left;
+	margin-left: 100px;
+	line-height: 50px;
+}
+.box4 label{
+	font-size: 25px;
+}
+
+.box4 #i1{
+	width:350px;
+	height: 30px;
+}
+.box4 button{
+	width: 100px;
+	height: 35px;
+}
+#search1{
+	font-size: 20px;
+	color: black;
+}
+#search1:hover{
+	color: red;
+}
+table{
+	width: 1500px;	
+	border:1px solid #DCDCDC;
+	border-collapse: collapse;
+}
+table thead th{
+	font-size: 30px;
+	background-color: #FFF0F5;
+}
+table tbody tr a{
+	color: black;
+}
+table tbody tr a:hover{
+	color: red;
+	text-decoration: underline;
+	transition: 2s;
+}
+table tbody input{
+	width: 200px;
+	height: 40px;
+}
+table tbody tr{
+	text-align: center;
+	font-size: 25px;
+}
+#page{
+	margin: 10px 0 0 900px;
+	font-size: 25px;
+}
+#page button{
+	opacity: 0.8;
+	
+}
+#page button:hover{
+	background-color:#FFFFFF;
+	transition: 0.5s;
+}

@@ -3,6 +3,7 @@ package com.q.controller;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import com.q.model.TbUser;
 import com.q.service.UserService;
 
 /**
+ * 控制器
  * 用户注册、查询、修改、删除、登录、退出、改密、用户列表跳页、注册时验证用户是否存在
  * @author Qluod
  * */
@@ -37,6 +39,8 @@ public class UserAction{
 	
 	private InputStream inputStream;
 	
+	//private Map<String, Object> map = ActionContext.getContext().getSession();
+
 	List<TbUser> userList = null;
 	
 	//用户注册方法
@@ -141,7 +145,14 @@ public class UserAction{
 			user.setSex(sex);
 			user.setStatues(1);
 			userService.alertUser(user);
-			return "success"; 
+			TbUser user2 = (TbUser) ServletActionContext.getRequest().getSession().getAttribute("userLogin");
+			if(user2.getStatues() == 2){
+				return "admin"; 
+			}else if(user2.getStatues() == 1){
+				return "success";
+			}else{
+				return "fail";
+			}
 		}else{
 			return "fail";
 		}
@@ -149,18 +160,30 @@ public class UserAction{
 	
 	//用户登录
 	public String userLogin(){
-		TbUser userlogin = userService.login(name,password);
-		if(userlogin != null && userlogin.getStatues() != 0){
+		TbUser userlogin = userService.getUserByName(name);
+		if(userlogin != null && userlogin.getStatues() != 0 && userlogin.getPassword().equals(password)){
 			HttpSession session = ServletActionContext.getRequest().getSession();
-			session.setAttribute("user", userlogin);
-			return "success";
+			session.setAttribute("userLogin", userlogin);
+			if(userlogin.getStatues() == 1){
+				return "success";
+			}else if(userlogin.getStatues() == 2){
+				return "admin";
+			}else{
+				return "success";
+			}
+		}else if(userlogin.getStatues() == 0){
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute("loginMsg", "用户已被删除");
+			return "login";
 		}else{
-			return "fail";
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute("loginMsg", "用户登录失败");
+			return "login";
 		}
 	}
 	
 	//忘记密码
-	public String forget(){
+	public String forget() throws IOException{
 		int temp = userService.forget(name,email,password);
 		if(temp == 1){
 			return "success";
@@ -187,6 +210,38 @@ public class UserAction{
 		}
 		return "success";
 	}
+	
+	//登录时的验证
+	public String loginCheck(){
+		return "success";
+	}
+	
+	//验证管理员是否超过5个
+	public String checkAdmin() throws UnsupportedEncodingException{
+		TbUser user = userService.getUserById(id);
+		int num = userService.checkAdmin();
+		JSONObject jsonObject = new JSONObject();
+		if(num>4){
+			jsonObject.put("msg", "管理员已满5位");
+			inputStream = new ByteArrayInputStream(jsonObject.toJSONString().getBytes("utf-8"));
+			return "success";
+		}else if(user.getStatues() == 2){
+			jsonObject.put("msg", "该用户已是管理员");
+			inputStream = new ByteArrayInputStream(jsonObject.toJSONString().getBytes("utf-8"));
+			return "success";
+		}else{
+			userService.setAdmin(id);
+			jsonObject.put("msg", "设置成功");
+			inputStream = new ByteArrayInputStream(jsonObject.toJSONString().getBytes("utf-8"));
+			return "success";
+		}
+	}
+	
+/*	//设置管理员
+	public String setAdmin(){
+		userService.setAdmin(id);
+		return "success";
+	}*/
 	
 	@Resource(name="userService")
 	public void setUserService(UserService userService) {

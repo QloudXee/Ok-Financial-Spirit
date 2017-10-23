@@ -19,14 +19,11 @@
 				$("#f1").html(" ");
 				$.ajax({
 					  type: "GET",
-					  url: "check.do?k="+Math.random(),
+					  url: "check.do",
 					  dataType: "json",
 					  data : "name="+name,
 					  success : function(msg){
 						  $("#f1").html(msg.msg);
-					  },
-					  error : function(){
-						alert("error!");  
 					  }
 					});
 			}
@@ -41,14 +38,17 @@
 			}
 		});
 		$("#repassword").mouseout(function(){
-			 var t= $("#repassword").val();
-			var passwordRegex=/^[0-9A-Za-z_]\w{5,19}$/;
-			if (!passwordRegex.test(t)) {
-				$("#f3").html("密码长度必须在6个字符到20个字符之间!");
-			}else if (passwordRegex.test(t)) {
+			var repassword= $("#repassword").val();
+			var password = $("#password").val();
+			if(repassword != password){
+				$("#f3").html("两次密码必须一致");
+			}else{
 				$("#f3").html(" ");
 			}
 		});
+		$("#back").click(function(){
+			history.go(-1);
+		})
 	})
 	</script>
 </head>
@@ -85,7 +85,7 @@
 			<input type="radio" name="usergender" id="male" value="女" checked="checked" required><label for="male">女</label>		
 		</div>
 		<div class="box6">
-		   <button type="button" name="button">返回</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   <button type="button" name="button" id="back">返回</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		   <button type="reset" name="button">重置</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		   <button type="button" name="button">注册</button>
 

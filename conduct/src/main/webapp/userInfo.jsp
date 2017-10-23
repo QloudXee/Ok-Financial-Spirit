@@ -10,6 +10,7 @@
 	<script src="jquery-3.2.1.min.js"></script>
 	<script>
 		$(document).ready(function(){
+			var id = $("#idvalue").val();
 			//跳转至注册页面
 			$("#regiest").click(function(){
 				window.location.href = "regiest.jsp";
@@ -18,23 +19,28 @@
 			$("#query").click(function(){
 				window.location.href = "getAll.do";
 			})
-			//上一页点击事件
-			$("#previous").click(function(){
-				window.location.href = "previous.do?total="+${total}+"&page="+${page};
-			})
-			//下一页点击事件
-			$("#next").click(function(){
-				window.location.href = "next.do?total="+${total}+"&page="+${page};
-			})
-			//页面跳转
-			$("#pageButton").click(function(){
-				var pageNum = $("#pageNum").val();
-				window.location.href = "toPage.do?total="+${total}+"&page="+pageNum;
-			})
 			//根据用户名查询
 			$("#select").click(function(){
 				var username = $("#username").val();
 				window.location.href = "query.do?name="+username;
+			})
+			$("#setadmin").click(function(){
+				if(id == null){
+					alert("没有用户信息!");
+				}else{
+					$.ajax({
+						  type: "GET",
+						  url: "checkAdmin.do?",
+						  dataType: "json",
+						  data : "id="+id,
+						  success : function(msg){
+								  alert(msg.msg);
+						  },
+						  error : function(){
+							  alert("error");
+						  }
+						});
+				}
 			})
 		})
 	</script>
@@ -44,8 +50,8 @@
 		<img src="images/logo.jpg" id="img1">
 	</div>
 	<div id="div1">
-		<button class="button1" id="query">用户查询</button><br><br>
-		<button class="button1" id="regiest">用户注册</button>
+		<button class="button1" id="setadmin">设为管理</button><br><br>
+		<button class="button1" id="query">返回列表</button><br><br>
 	</div>
 	<div id="div2">
 		<div id="top">
@@ -57,7 +63,7 @@
 	<table>
 		<tbody>
 			<tr width=100%>
-				<td width="40px">全选</td>
+				<td width="50px">ID：</td>
 				<td width="120px">用户名称：</td>
 				<td width="70px">密码</td>
 				<td width="150px">邮箱</td>
@@ -67,8 +73,9 @@
 			</tr>
 			<c:forEach items="${userList}" var="user">
 				<tr width=100%>
-					<td width="40px"><input type="radio"></td>
-					<td width="110px">&nbsp; ${user.name} &nbsp;</td>
+					<input type="text" value="${user.id}" id="idvalue" hidden="hidden">
+					<td width="50px">${user.id}</td>
+					<td width="120px">${user.name}</td>
 					<td width="70px">${user.password}</td>
 					<td width="150px">${user.email}</td>
 					<td width="80px">${user.sex}</td>

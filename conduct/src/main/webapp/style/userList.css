@@ -43,6 +43,8 @@
 			position: relative;
 			left: 30px;
 			top: 50px;
+			width : 75px;
+			height :25px;
 		}
 		#top{
 			width: 100%;
@@ -102,4 +104,10 @@
 		#pagediv{
 			width: 99%;
 			height: 100px;
+		}
+		#mid{
+			width : 99%;
+			height : 80%;
+			display : block;
+			border-bottom: solid 1px;
 		}

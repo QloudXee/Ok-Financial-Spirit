@@ -6,26 +6,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主页面</title>
 <link rel="stylesheet" href="style/regiest.css">
-<script src="jquery-3.2.1.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			$("#query").click(function(){
-				window.location.href = "getAll";
-			})
+
+<script src="js/jquery.min.js"></script>
+<script src="js/calendar.js"></script>
+<link rel="stylesheet" href="style/calendar.css">
+<script>
+	$(document).ready(function(){
+		$("#logout").click(function(){
+			window.location.href = "logout.do";
 		})
-	</script>
+		$("#alert").click(function(){
+			var id = ${userLogin.id};
+			window.location.href = "toAlertUser.do?id="+id;
+		})
+	})
+</script>
 </head>
 <body>
 <div id="div0">
 		<img src="images/logo.jpg" id="img1">
 	</div>
 	<div id="div1">
-		<button id="query" class="button1">用户查询</button><br><br>
-		<button id="regiest" class="button1">用户注册</button><br><br><br><br>
-		<button class="button1">账号管理</button><br><br>
-		<button class="button1">理财助手</button><br><br>
+		<button id="alert" class="button1">账号管理</button><br><br>
+		<button id="#" class="button1">理财助手</button><br><br><br><br>
+		<button id="logout" class="button1">用户登出</button><br><br><br><br>
 	</div>
 	<div id="div2">
+		<div id="rili">
+				<div id="calendar" class="calendar"></div>
+		</div>
+		<div>
+			<hr>
+			<marquee scrollamount=2 id="roll" id="roll">
+				<img src="images/deemo1.jpg" id="deemo1" height="200px" width="200px">
+				<img src="images/deemo2.jpg" id="deemo1" height="200px">
+				<img src="images/deemo3.jpg" id="deemo1" height="200px">
+			</marquee>
+		</div>
 	</div>
 	<br>
 </body>

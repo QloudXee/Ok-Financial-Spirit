@@ -86,3 +86,23 @@ body{
 		#input0{
 			width: 140px;
 		}
+		#roll{
+			width : 99%;
+			height : 100px;
+			. -webkit-marquee-style:alternate;
+		}
+		#divdeemo{
+			margin-left: 10%;
+			width : 80%;
+			height : 100px;
+		}
+		#deemo1{
+			position: relative;
+			top : 8%;
+			left: 15%;
+			width : 70%;
+		}
+		#roll{
+			width : 99%;
+			height : 200px;
+		}

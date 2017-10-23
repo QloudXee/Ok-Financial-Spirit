@@ -9,7 +9,13 @@
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script>
+	var a=""+'${loginMsg}';
+	if(a!=""){
+		alert(a);
+		a="";
+	}
 		$(document).ready(function(){
+			
 			$("#forget").click(function(){
 				window.location.href="forget.jsp";
 			})

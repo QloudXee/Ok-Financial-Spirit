@@ -7,8 +7,6 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.metamodel.source.hbm.SetAttributeSourceImpl;
 import org.springframework.stereotype.Repository;
 
 import com.q.model.TbUser;
@@ -162,6 +160,27 @@ public class UserDao {
 	 * */
 	public void forget(TbUser user) {
 		Session session = getSession();
+		session.update(user);
+	}
+
+	/**
+	 * 查找所有的管理员
+	 * @return List<TbUser>
+	 * */
+	public List<TbUser> checkAdmin() {
+		Session session = getSession();
+		String hql = "FROM TbUser u WHERE u.statues = 2";
+		List<TbUser> admins = session.createQuery(hql).list();
+		return admins;
+	}
+
+	/**
+	 * 设置管理员
+	 * @param user
+	 * */
+	public void setAdmin(TbUser user) {
+		Session session = getSession();
+		String hql = "UPDATE TbUser u SET u.statues = 2";
 		session.update(user);
 	}
 

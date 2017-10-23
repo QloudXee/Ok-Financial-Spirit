@@ -1,6 +1,9 @@
 package com.q.controller;
 
+import javax.annotation.Resource;
+
 import com.q.model.TbUser;
+import com.q.service.UserService;
 
 //页面协参跳转
 public class PageAction {
@@ -10,12 +13,11 @@ public class PageAction {
 	private TbUser user;
 	private Integer balance;
 	
+	private UserService userService;
+	
 	//协参跳转到用户修改界面
 	public String toAlertUser(){
-		user = new TbUser();
-		user.setId(id);
-		user.setName(name);
-		user.setBalance(balance);
+		user = userService.getUserById(id);
 		return "success";
 	}
 	
@@ -49,6 +51,11 @@ public class PageAction {
 
 	public void setBalance(Integer balance) {
 		this.balance = balance;
+	}
+	
+	@Resource(name="userService")
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_user", catalog = "conduct")
-public class TbUser implements java.io.Serializable {
+public class TbUser{
 
 	private Long id;
 	private String name;
@@ -26,14 +26,13 @@ public class TbUser implements java.io.Serializable {
 	private Integer statues;
 	private String email;
 	private String sex;
-	private Set<TbImport> tbImports = new HashSet<TbImport>(0);
-	private Set<TbOutput> tbOutputs = new HashSet<TbOutput>(0);
+	private Set<Order> tbImports = new HashSet<Order>(0);
 
 	public TbUser() {
 	}
 
 	public TbUser(String name, String password, Integer balance, Integer statues, String email, String sex,
-			Set<TbImport> tbImports, Set<TbOutput> tbOutputs) {
+			Set<Order> tbImports) {
 		this.name = name;
 		this.password = password;
 		this.balance = balance;
@@ -41,7 +40,6 @@ public class TbUser implements java.io.Serializable {
 		this.email = email;
 		this.sex = sex;
 		this.tbImports = tbImports;
-		this.tbOutputs = tbOutputs;
 	}
 
 	@Id
@@ -110,21 +108,12 @@ public class TbUser implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tbUser")
-	public Set<TbImport> getTbImports() {
+	public Set<Order> getTbImports() {
 		return this.tbImports;
 	}
 
-	public void setTbImports(Set<TbImport> tbImports) {
+	public void setTbImports(Set<Order> tbImports) {
 		this.tbImports = tbImports;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tbUser")
-	public Set<TbOutput> getTbOutputs() {
-		return this.tbOutputs;
-	}
-
-	public void setTbOutputs(Set<TbOutput> tbOutputs) {
-		this.tbOutputs = tbOutputs;
 	}
 
 }

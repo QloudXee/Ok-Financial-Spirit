@@ -102,7 +102,7 @@ public class UserService {
 		}else if(user.getPassword().equals(password)){
 			return user;
 		}else{
-			return null;
+			return user;
 		}
 	}
 	
@@ -132,13 +132,44 @@ public class UserService {
 	}
 	
 	/**
-	 * 查询所有用户
+	 * 根据用户名查询单个用户
 	 * @param name
 	 * @return TbUser
 	 * */
 	public TbUser getUserByName(String name){
 		TbUser user = userDao.getUserByName(name);
 		return user;
+	}
+	
+	/**
+	 * 查询管理员个数
+	 * @return temp
+	 * */
+	public int checkAdmin() {
+		List<TbUser> admins = userDao.checkAdmin();
+		int temp = admins.size();
+		return temp;
+	}
+	
+	/**
+	 * 根据id查询用户
+	 * @param id
+	 * @return user
+	 * */
+	public TbUser getUserById(long id){
+		TbUser user = userDao.getUserById(id);
+		return user;
+	}
+	
+	/**
+	 * 设置管理员
+	 * @param id
+	 * */
+	public TbUser setAdmin(long id) {
+		TbUser user = userDao.getUserById(id);
+		user.setStatues(2);
+		userDao.setAdmin(user);
+		return null;
 	}
 	
 	@Resource(name="userDao")
